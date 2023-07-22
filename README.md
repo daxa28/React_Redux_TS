@@ -1,46 +1,87 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# React
 
-In the project directory, you can run:
+#### Данное приложение реализовано на языке Type Script с помощью JavaScript-библиотеки – React, с использованием стейт менеджера Redux.
+
+<p>
+          
+<b>#</b> В ходе работы над приложением был инициализирован стор&#40;
+<b>store</b>&#41; с помощью импортированной функции <b>createStore</b>
+из <b>Redux</b>. Создано два редьюсера&#40;userReducer и
+todoReducer&#41;.
+<br />
+<br />
+<b>#</b> В userReducer происходит взаимодействие со списком
+пользователей. Было проинициализировано дефолтное состояние для списка
+пользователей, а также типизировано при помощи созданного
+интерфейса&#40;:UserState&#41;. Создано три экшена: идентификация
+загрузки пользователей с сервера &#40;FETCH_USERS&#41;, успешная
+загрузка пользователей с сервера &#40;FETCH_USERS_SUCCESS&#41; и
+ошибка при загрузке пользователей &#40;FETCH_USERS_ERROR&#41;. Для
+каждого экшена был создан свой интерфейс и на основе этих интерфейсов
+был создан тип для экшена, который принимает редьюсер.
+<br />
+<br />
+<b>#</b> В todoReducer происходит взаимодействие со списком задач.
+Было проинициализировано дефолтное состояние для списка задач, а также
+типизировано при помощи созданного интерфейса&#40;:TodoState&#41;.
+Создано четыре экшена: идентификация загрузки задач с
+сервера&#40;FETCH_TODOS&#41;, успешная загрузка задач с
+сервера&#40;FETCH_TODOS_SUCCESS&#41;, ошибка при загрузке
+задач&#40;FETCH_TODOS_ERROR&#41; и получение номера страницы для
+загрузки и отображения списка задач&#40;SET_TODO_PAGE&#41;. Для
+каждого экшена был создан свой интерфейс и на основе этих интерфейсов
+был создан тип UserAction для экшена, который принимает редьюсер.
+<br />
+<br />
+<b>#</b> Импортирована функция <b>combineReducers</b> из Redux для
+объединения двух редьюсеров. Импортирован компонент <b>Provider</b> из
+<b>React-redux</b> для доступа к стор. Созданные компоненты UserList и
+TodoList были типизированы, как функциональные.
+<br />
+<br />
+<b>#</b> Создан кастомный хук useTypedSelector для взаимодействия с
+состоянием из компонентов, типизирован при помощи типа
+<b>TypedUseSelectorHook</b>, который параметром принимает RootState
+получаемый из типа ресьюсера rootReducer при помощи <b>ReturnType</b>.
+<br />
+<br />
+<b>#</b> Создано два экшен генератора&#40; <b>action creators</b>
+&#41;для получения данных с сервера. В экшен генераторе для списка
+пользователей создана функция, в которой происходят асинхронные
+действия, в результате которых вызывается функция dispatch
+типизированная типом <b>Dispatch</b> из <b>Redux</b>, который
+параметром принимает тип экшенов отвечающие за изменения состояния
+списка пользователей&#40;UserAction&#41;. В экшен генераторе для
+списка задач создана функция, в которой происходят асинхронные
+действия, в результате которых вызывается функция <b>dispatch</b>
+типизированная типом <b>Dispatch</b> из <b>Redux</b>, который
+параметром принимает тип экшенов отвечающие за изменения состояния
+списка задач&#40;TodoAction&#41;, а также создана функция возвращающая
+экшен для получения номера страницы списка задач.
+<br />
+<br />
+<b>#</b> Создан кастомный хук useActions, в котором связываем экшен
+генераторы с функцией dispatch, которую получаем при помощи хука
+<b>useDispatch</b> из React-redux. Связывание происходит благодаря
+функции <b>bindActionCreators</b> из <b>Redux</b>.
+<br />
+<br />
+<b>Вывод</b>: Разработка приложения на <b>Type Script</b> расширяет
+стандартные возможности языка <b>Java Script</b>. Главным
+преимуществом является явное указание типов на этапе разработки что
+исключает множество потенциальных ошибок и тем самым облегчает
+разработку.
+</p>
+
+#### _screenshot(1)_
+
+<img src="./photo_for_readme/1.png" width="700">
+
+
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Runs the app in the development mode.
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
